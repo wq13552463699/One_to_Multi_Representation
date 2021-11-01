@@ -1,8 +1,9 @@
 # One_to_Multi_Representation(updating)
 
-Images have not been widely used as input for reinforcement learning(RL) to control robots, mainly because: \
-1. Most of the images currently used are 2-dimensional and therefore cannot effectively provide the relative positions of objects in space; \
-2. The redundant information in the image misleads the controller and slows down the training speed. \
+Images have not been widely used as input for reinforcement learning(RL) to control robots, mainly because: 
+1. Most of the images currently used are 2-dimensional and therefore cannot effectively provide the relative positions of objects in space; 
+2. The redundant information in the image misleads the controller and slows down the training speed.
+
 Therefore, we propose One-to-Multi (OTM) representation, which aims to derive the global representation of the environment by inputting only a single RGB image. Just like human eyes, when you see a scene from one angle, you can use your imagination to infer the perspective from multiple angles The time seriesl information in one epoch can be recorded by the OTM for the purpose of describing the current state more accurately. OTM is a highly efficient data format that improves the training speed and performance of RL algorithms. In addition, generalization ability allows it to be freely used in multiple unseened scenes in both simulators and reality.
 
 # Introduction
@@ -15,5 +16,6 @@ In general, a large part of the input picture is occupied by redundant informati
 As the robot moves in the environment, the later states of an epoch are highly dependent on previous states, and historical information plays a vital role in the evaluation of the states at a given point of time. For example, sometimes the camera will lose the target object because the position of the robot blocks the view of the object by the camera Directly passing a targetless image to the controller can lead to headless action and therefore no improvement. OTM can provide a more objective real-time estimation of the state of the environment as it uses both both previous states of the system as well as the current state of the system, which can solve the above-mentioned problems.
 OTM has generalization for the same layout of different scene so that it can be used flexibly in the either simulator environment or reality
 
+<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/1.png" width="633" >\
 
 # Nov 1 updated
