@@ -17,5 +17,12 @@ As the robot moves in the environment, the later states of an epoch are highly d
 OTM has generalization for the same layout of different scene so that it can be used flexibly in the either simulator environment or reality
 
 <img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/1.png" width="633" >
+# Steps:
+* Build a RL training environment in pybullet. Pybullet will be used as the physics engine of the simulator for this project. It is good in compatibility and speed. (The simulation speed of CoppeliaSim currently used is slow.)  
+* Create URDFs: In order to use DR technology, we need to have multiple scenes stored in URDF files(the same layout, different backgrounds, color of the robotic arm and the object, and light source position, etc.). The proportions of the workbench, robotic arm, and objects will be set the same as the real robotic system.
+* Create a dataset. The current stage is for testing, check method's feasibility, so I would like to keep the task simple. Only two cameras will be set up in this stage, one for collecting the front view and one for collecting the side view . According to all current experience, the amount of images required will be about 500,000.
+* Train the RGAN model so that it can derive the side scene with only the foreground input. The previous RGAN model performed well in CoppeliaSim, but the fluctuation is relatively large. A more promising improvement is to use the LOCAL-GLOBAL prediction[6]. There will be multiple GANs working at the same time, one is for inferring the global scene(thing I did before), and the other GANs are for inferring local features, such as robots, targets, etc. Finally, these predictions are stitched together to obtain a better prediction.
+* Use VAE for feature extraction.
+* RGAN+VAE=OTM, OTM will be used as a data observation model to be used in PlaNet for training to try to complete the reaching task, and compare with the previous results to see if it can be better. If it works, go on to finish other difficult tasks, otherwise select other methods.
 
 # Nov 1 updated
