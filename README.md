@@ -25,7 +25,7 @@ Pybullet is used as a physics engine to build a working platform for the UR5 rob
 The working environment of the real robot is basically the same as the layout in the simulator. The UR5e robot is placed on the vention work platform with the Intel RealSense camera placed at 0° position on X plane and point to base.
 ### 3. Multi-view Infer
 View inference will be implemented through stitching global and local views inferred in parallel. Local parts can strengthen the formation of the details, such as the pose of the robotic arm and the position of the target object, etc. Global part is to indicate the relative position and global frame. The model has the structure shown below.\
-<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/2.png" width="633" >
+<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/2.png" width="1000" >
 ### 4. Time-Series data handle
 In the control of the robot, the series of images input in a single epoch is strongly dependent on each other in time. We add GRU cells in the model to enable it to record historical information in the environment so that the current inference can be more accurate.
 ### 5. Principal component extraction
@@ -36,7 +36,7 @@ The purpose of generalizing the model is to maintain the same performance when t
 Place a camera at the 0° position of a scene that has a similar layout for training OTM, so that the image captured by the camera is the same as the image captured by the 0° camera in OTM's training scene. Compare the accuracy and training time of the OTM model as an observation model with that of the traditional observation model. Comparison: 1. OTM vs One raw image with AE. 2. OTM vs multi raw images with AE. 
 
 ## Logic Map
-<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/3.png" width="633" >
+<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/3.png" width="1000" >
 
 
 # Nov 1 updated
