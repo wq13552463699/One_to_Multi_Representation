@@ -39,4 +39,7 @@ Place a camera at the 0° position of a scene that has a similar layout for trai
 <img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/3.png" width="1000" >
 
 
-# Nov 1 updated
+# Sep 28 updated
+Developed the dataset and trained the RGAN model, which can accurately infer the image of another angle by observing the image of one angle. Please see:\
+<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/4.png" width="633" >
+<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/6.png" width="633" >
