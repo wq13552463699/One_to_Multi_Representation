@@ -44,3 +44,12 @@ Developed the dataset and trained the RGAN model, which can accurately infer the
 <img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/4.png" width="1000" >
 ### Loss Curve
 <img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/6.png" width="1000" >
+
+# Nov 1 updated
+New RNN elements are introduced into the model, which enables the model to be able to process time-series data. But after adjusting the model structure and data set countless times, the overall results obtained are not ideal.\
+The location of the target can be basically inferred. As shown in the following picture, the target in the input image was totally blocked by robot’s body, in theory, the pure GAN model cannot infer the unseen target. RNN was play a crucial role for solving this problem, it gives me some hope. The inferred side view image is not acceptable yet, but it can prove that the RNN can help on the prediction at least.
+<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/5.png" width="1000" >
+### Loss Curve
+<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/7.png" width="1000" >
+
+
