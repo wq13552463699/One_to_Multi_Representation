@@ -16,13 +16,27 @@ In general, a large part of the input picture is occupied by redundant informati
 As the robot moves in the environment, the later states of an epoch are highly dependent on previous states, and historical information plays a vital role in the evaluation of the states at a given point of time. For example, sometimes the camera will lose the target object because the position of the robot blocks the view of the object by the camera Directly passing a targetless image to the controller can lead to headless action and therefore no improvement. OTM can provide a more objective real-time estimation of the state of the environment as it uses both both previous states of the system as well as the current state of the system, which can solve the above-mentioned problems.
 OTM has generalization for the same layout of different scene so that it can be used flexibly in the either simulator environment or reality
 
-<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/1.png" width="633" >
-# Steps:
-* Build a RL training environment in pybullet. Pybullet will be used as the physics engine of the simulator for this project. It is good in compatibility and speed. (The simulation speed of CoppeliaSim currently used is slow.)  
-* Create URDFs: In order to use DR technology, we need to have multiple scenes stored in URDF files(the same layout, different backgrounds, color of the robotic arm and the object, and light source position, etc.). The proportions of the workbench, robotic arm, and objects will be set the same as the real robotic system.
-* Create a dataset. The current stage is for testing, check method's feasibility, so I would like to keep the task simple. Only two cameras will be set up in this stage, one for collecting the front view and one for collecting the side view . According to all current experience, the amount of images required will be about 500,000.
-* Train the RGAN model so that it can derive the side scene with only the foreground input. The previous RGAN model performed well in CoppeliaSim, but the fluctuation is relatively large. A more promising improvement is to use the LOCAL-GLOBAL prediction[6]. There will be multiple GANs working at the same time, one is for inferring the global scene(thing I did before), and the other GANs are for inferring local features, such as robots, targets, etc. Finally, these predictions are stitched together to obtain a better prediction.
-* Use VAE for feature extraction.
-* RGAN+VAE=OTM, OTM will be used as a data observation model to be used in PlaNet for training to try to complete the reaching task, and compare with the previous results to see if it can be better. If it works, go on to finish other difficult tasks, otherwise select other methods.
+<img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/1.png" width="633" >\
+
+## Steps
+### 1.Simulator set up
+Pybullet is used as a physics engine to build a working platform for the UR5 robotic arm. The cameras are respectively placed on three key positions of 0°, -90°, and +90° on the X plane, pointing to the direction of the base of the robotic arm. In the training of the OTA model, the image captured by the 0° camera will be used as input to infer the images captured by the other two cameras. In order to develop the generalization of the OTM model, multiple environments with the same layout and different backgrounds will be created.
+### 2.Real Robot arm environment
+The working environment of the real robot is basically the same as the layout in the simulator. The UR5e robot is placed on the vention work platform with the Intel RealSense camera placed at 0° position on X plane and point to base.
+### 3.Multi-view Infer
+View inference will be implemented through stitching global and local views inferred in parallel. Local parts can strengthen the formation of the details, such as the pose of the robotic arm and the position of the target object, etc. Global part is to indicate the relative position and global frame. The model has the structure shown below(Fig2).
+### 4.Time-Series data handle
+In the control of the robot, the series of images input in a single epoch is strongly dependent on each other in time. We add GRU cells in the model to enable it to record historical information in the environment so that the current inference can be more accurate.
+### 5.Principal component extraction
+After the multi-view has been inferred to an acceptable level, the principal components of the original and the inferred images need to be extracted. They will be stacked together and VAE structure will be applied to reduce the data dimensionality so that extracting principal components. Since the reliability of the inferred images are lower than that of the original image, weight components will be added to make the calculation relatively biased toward the original image.
+### 6.Generalizing
+The purpose of generalizing the model is to maintain the same performance when the OTM model is put into a totally new scene. The scenes for training the OTM have the same layout but different color and components, it will be changed from time to time.
+### 7.Apply OTM in RL
+Place a camera at the 0° position of a scene that has a similar layout for training OTM, so that the image captured by the camera is the same as the image captured by the 0° camera in OTM's training scene. Compare the accuracy and training time of the OTM model as an observation model with that of the traditional observation model. Comparison: 1. OTM vs One raw image with AE. 2. OTM vs multi raw images with AE. 
+
+
+
+
+
 
 # Nov 1 updated
