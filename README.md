@@ -38,6 +38,12 @@ Place a camera at the 0° position of a scene that has a similar layout for trai
 ## Logic Map
 <img src="https://github.com/wq13552463699/One_to_Multi_Representation/blob/main/pictures/3.png" width="1000" >
 
+## Installation
+* Clone or download this repository to your local PC.
+* The environment used in this experiment is in another folder of mine, please see:
+https://github.com/wq13552463699/UR5E_robot_gym_env_Real_and_Sim/tree/main/Simulation
+Please clone the content in this link, and put all the files together within this repository in you local PC
+
 
 # Sep 28 updated
 Developed the dataset and trained the RGAN model, which can accurately infer the image of another angle by observing the image of one angle. Please see:\
