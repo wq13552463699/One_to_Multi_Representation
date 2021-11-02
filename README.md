@@ -44,6 +44,10 @@ Place a camera at the 0° position of a scene that has a similar layout for trai
 https://github.com/wq13552463699/UR5E_robot_gym_env_Real_and_Sim/tree/main/Simulation
 Please clone the content in this link, and put all the files together within this repository in you local PC
 
+## Contribution
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Please make sure to update tests as appropriate.
+
 
 # Sep 28 updated
 Developed the dataset and trained the RGAN model, which can accurately infer the image of another angle by observing the image of one angle. Please see:\
