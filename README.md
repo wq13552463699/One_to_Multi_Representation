@@ -1,4 +1,4 @@
-# One_to_Multi_Representation(updating)
+# One_to_Multi_Representation(updating...)
 
 Images have not been widely used as input for reinforcement learning(RL) to control robots, mainly because: 
 1. Most of the images currently used are 2-dimensional and therefore cannot effectively provide the relative positions of objects in space; 
