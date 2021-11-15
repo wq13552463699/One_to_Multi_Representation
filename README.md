@@ -1,7 +1,7 @@
 # One_to_Multi_Representation(updating...)
 
 Images have not been widely used as input for reinforcement learning(RL) to control robots, mainly because: 
-1. Most of the images currently used are 2-dimensional and therefore cannot effectively provide the relative positions of objects in space; 
+1. Most of the images currently used are 2-dimensional and therefore cannot effectively provide the relative positions of objects in space;
 2. The redundant information in the image misleads the controller and slows down the training speed.
 
 Therefore, we propose One-to-Multi (OTM) representation, which aims to derive the global representation of the environment by inputting only a single RGB image. Just like human eyes, when you see a scene from one angle, you can use your imagination to infer the perspective from multiple angles The time seriesl information in one epoch can be recorded by the OTM for the purpose of describing the current state more accurately. OTM is a highly efficient data format that improves the training speed and performance of RL algorithms. In addition, generalization ability allows it to be freely used in multiple unseened scenes in both simulators and reality.
